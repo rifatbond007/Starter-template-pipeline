@@ -2,10 +2,10 @@ import express from 'express';
 import { ok } from '@hackathon/shared';
 
 const app = express();
-const PORT = process.env.PORT ?? 4000;
+const PORT = process.env.PORT ?? 8000;
 
 app.get('/health', (_req, res) => {
-  res.json(ok({ status: 'healthy' }));
+  res.json(ok({ status: 'ok' }));
 });
 
 app.get('/api/status', (_req, res) => {

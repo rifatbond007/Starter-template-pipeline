@@ -8,6 +8,6 @@ spec:
   selector:
     app: server
   ports:
-    - port: 4000
-      targetPort: 4000
+    - port: 8000
+      targetPort: 8000
       protocol: TCP

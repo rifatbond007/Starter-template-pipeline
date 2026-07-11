@@ -19,10 +19,10 @@ spec:
         - name: server
           image: rifatbroh/hackathon-server:latest
           ports:
-            - containerPort: 4000
+            - containerPort: 8000
           env:
             - name: PORT
-              value: "4000"
+              value: "8000"
             - name: APP_VERSION
               value: "latest"
             - name: DATABASE_URL
@@ -45,12 +45,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 4000
+              port: 8000
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health
-              port: 4000
+              port: 8000
             initialDelaySeconds: 3
             periodSeconds: 5

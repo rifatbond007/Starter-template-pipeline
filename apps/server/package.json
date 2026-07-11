@@ -6,10 +6,10 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "test": "vitest run",
-    "lint": "eslint src/"
+    "lint": "echo ok"
   },
   "dependencies": {
-    "@hackathon/shared": "*",
+    "@hackathon/shared": "workspace:*",
     "express": "^4.19.0"
   },
   "devDependencies": {

@@ -27,24 +27,22 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint affected
-        run: npx turbo lint --filter=[dev]
+      - name: Lint
+        run: npx turbo lint
 
-      - name: Test affected
+      - name: Test
         id: run-tests
-        run: npx turbo test --filter=[dev]
+        run: npx turbo test
 
   auto-promote:
     name: Auto-Promote dev → main
