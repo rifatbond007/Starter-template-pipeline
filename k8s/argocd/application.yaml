@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hackathon
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rifatbond007/hackathon-app
+    targetRevision: main
+    path: k8s/manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hackathon
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

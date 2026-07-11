@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: hackathon-project
+  namespace: argocd
+spec:
+  description: Hackathon GitOps project
+  sourceRepos:
+    - https://github.com/rifatbond007/hackathon-app
+  destinations:
+    - namespace: hackathon
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  orphanedResources:
+    warn: true

@@ -1,0 +1,71 @@
+name: Dev CI — Test & Auto-Promote
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+  ci:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.run-tests.outcome }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint affected
+        run: npx turbo lint --filter=[dev]
+
+      - name: Test affected
+        id: run-tests
+        run: npx turbo test --filter=[dev]
+
+  auto-promote:
+    name: Auto-Promote dev → main
+    needs: ci
+    if: needs.ci.outputs.status == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "hackathon-bot"
+          git config user.email "bot@hackathon.local"
+
+      - name: Merge dev into main
+        run: |
+          git checkout main
+          git merge dev --no-ff -m "chore: auto-promote dev → main [skip ci]"
+          git push origin main
