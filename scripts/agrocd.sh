@@ -43,8 +43,8 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 echo ""
 
 echo "=== Applying project & application ==="
-kubectl apply -f k8s/argocd/project.yaml
-kubectl apply -f k8s/argocd/application.yaml
+kubectl apply -f ~/k8s/argocd/project.yaml
+kubectl apply -f ~/k8s/argocd/application.yaml
 
 echo "=== Done ==="
 echo "ArgoCD UI:     port-forward with: kubectl port-forward -n argocd svc/argocd-server 8080:443"
