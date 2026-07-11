@@ -128,7 +128,7 @@ jobs:
             yq eval '.spec.template.spec.containers[0].image = "${{ needs.build-server.outputs.image_tag }}"' -i k8s/manifests/server-deployment.yaml
 
       - run: |
-          git config user.name "hackathon-bot"
-          git config user.email "bot@hackathon.local"
+          git config user.name "rifatbond007"
+          git config user.email "abdullah.al.rifat2239@gmail.com"
           git add k8s/manifests/
           git diff --staged --quiet || (git commit -m "chore: update image tags for ${{ github.sha }} [skip ci]" && git push)
