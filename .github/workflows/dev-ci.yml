@@ -37,12 +37,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint affected
-        run: npx turbo lint --filter=[dev]
+      - name: Lint
+        run: npx turbo lint
 
-      - name: Test affected
+      - name: Test
         id: run-tests
-        run: npx turbo test --filter=[dev]
+        run: npx turbo test
 
   auto-promote:
     name: Auto-Promote dev → main
