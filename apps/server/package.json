@@ -9,7 +9,7 @@
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@hackathon/shared": "*",
+    "@hackathon/shared": "workspace:*",
     "express": "^4.19.0"
   },
   "devDependencies": {
