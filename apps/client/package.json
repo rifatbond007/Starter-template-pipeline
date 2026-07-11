@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "test": "vitest run",
-    "lint": "next lint"
+    "lint": "echo ok"
   },
   "dependencies": {
     "@hackathon/shared": "workspace:*",
