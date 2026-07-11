@@ -78,8 +78,8 @@ Note the **Public IPv4 address**.
 scp -i /path/to/your-key.pem -r k8s/ scripts/ ubuntu@<EC2_PUBLIC_IP>:~/
 
 ssh -i /path/to/your-key.pem ubuntu@<EC2_PUBLIC_IP>
-chmod +x ~/scripts/bootstrap-k3s-argocd.sh
-sudo ~/scripts/bootstrap-k3s-argocd.sh
+chmod +x ~/scripts/agrocd.sh
+sudo ~/scripts/agrocd.sh
 ```
 
 The script installs k3s + Helm + ingress-nginx + ArgoCD, then applies the Project and Application CRDs.
