@@ -59,11 +59,11 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "hackathon-bot"
-          git config user.email "bot@hackathon.local"
+          git config user.name "rifatbond007"
+          git config user.email "abdullah.al.rifat2239@gmail.com"
 
       - name: Merge dev into main
         run: |
           git checkout main
-          git merge dev --no-ff -m "chore: auto-promote dev → main [skip ci]"
+          git merge dev --no-ff -m "chore: auto-promote dev → main"
           git push origin main
